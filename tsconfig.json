@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017"],
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "outDir": "lib",
+    "inlineSources": true,
+    "esModuleInterop": true,
+    "sourceRoot": "/",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@infra/*": ["src/infrastructure/*"],
+      "@domain/*": ["src/domain/*"],
+      "@usecases/*": ["src/domain/use_cases/*"],
+      "@config/*": ["src/infrastructure/config/*"],
+      "@utils/*": ["src/infrastructure/utils/*"],
+      "@web/*": ["src/infrastructure/web/*"],
+      "@handlers/*": ["src/infrastructure/utils/handlers/*"],
+      "@tests/*": ["tests/*"]
+    }
+  },
+  "include": ["./**/*.ts", "src/app.ts", "handlers/web.ts"],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".webpack/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*",
+    ".idea/**/*"
+  ]
+}

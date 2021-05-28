@@ -1,0 +1,28 @@
+service: falcon-backend
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    minimumCompressionSize: 500
+
+functions:
+  sls-checkout:
+    handler: src/infrastructure/handlers/web.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
+          cors: true
