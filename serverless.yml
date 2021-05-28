@@ -20,7 +20,7 @@ provider:
 
 functions:
   sls-checkout:
-    handler: src/infrastructure/handlers/web.handler
+    handler: src/infrastructure/handlers/web.default
     events:
       - http:
           method: any
