@@ -3,7 +3,7 @@ interface IDumpUseCase {
   value2: number
 }
 
-export default async function DumpUseCase({
+export async function DumpUseCase({
   value1,
   value2,
 }: IDumpUseCase): Promise<number> {
