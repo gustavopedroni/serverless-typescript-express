@@ -1,15 +1,16 @@
 import { verify } from 'jsonwebtoken'
 
-import { getUsers } from '@src/domain/entities/user'
+import IUseCase from '@src/domain/use_cases'
 import settings from '@src/infrastructure/config/settings'
 import logger from '@src/infrastructure/utils/logger'
-import IUseCase from '@src/domain/use_cases'
+
 import { REFRESH_TOKEN_COOKIE } from '@src/infrastructure/config/token'
 import {
   createAccessToken,
   createRefreshToken,
   sendRefreshToken,
 } from '@src/infrastructure/web/auth/token'
+import { getUsers } from '@src/infrastructure/repositories/user_repository'
 
 type RefreshResponse = {
   ok: boolean
@@ -19,7 +20,7 @@ type RefreshResponse = {
 const RefreshTokenUseCase: IUseCase<RefreshResponse> = async ({ req, res }) => {
   const token = req.cookies[REFRESH_TOKEN_COOKIE]
 
-  const users = getUsers()
+  const users = await getUsers()
 
   if (!token) {
     return {

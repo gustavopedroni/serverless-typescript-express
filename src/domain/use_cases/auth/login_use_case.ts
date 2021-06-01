@@ -1,4 +1,4 @@
-import { getUsers } from '@src/domain/entities/user'
+import { getUsers } from '@src/infrastructure/repositories/user_repository'
 import IUseCase from '@src/domain/use_cases'
 import {
   createAccessToken,
@@ -10,7 +10,7 @@ import { ResponseError } from '@src/infrastructure/web/errors'
 const LoginUseCase: IUseCase = async ({ body, res }) => {
   const { email, password } = body
 
-  const users = getUsers()
+  const users = await getUsers()
 
   let user
 
