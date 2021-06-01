@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  api:
+    build: .
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 3000:3000
+      - 9229:9229
+    command: >
+      bash -c "
+        yarn start
+        && chmod -R 777 .webpack node_modules
+      "

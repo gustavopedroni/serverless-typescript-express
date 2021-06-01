@@ -1,9 +1,9 @@
-import express from 'express'
+import { Router } from 'express'
 
-const router = express.Router()
+import authentication from '@src/infrastructure/web/auth'
 
-router.get('/', (_, res) => {
-  return res.json({ message: 'This is message route' })
-})
+const router = Router()
+
+router.use(authentication)
 
 export default router

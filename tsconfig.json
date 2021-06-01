@@ -13,14 +13,9 @@
     "sourceRoot": "/",
     "baseUrl": "./",
     "paths": {
+      // roots
       "@src/*": ["src/*"],
-      "@infra/*": ["src/infrastructure/*"],
-      "@domain/*": ["src/domain/*"],
-      "@usecases/*": ["src/domain/use_cases/*"],
-      "@config/*": ["src/infrastructure/config/*"],
-      "@utils/*": ["src/infrastructure/utils/*"],
-      "@web/*": ["src/infrastructure/web/*"],
-      "@handlers/*": ["src/infrastructure/utils/handlers/*"],
+      // tests
       "@tests/*": ["tests/*"]
     }
   },

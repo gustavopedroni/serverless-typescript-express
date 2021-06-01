@@ -1,4 +1,5 @@
 service: falcon-backend
+variablesResolutionMode: 20210326
 
 plugins:
   - serverless-webpack
@@ -9,14 +10,43 @@ custom:
     webpackConfig: ./webpack.config.js
     includeModules: true
 
+  environments:
+    env: ${self:custom.environments.env_by_stage.${self:provider.stage}}
+    env_by_stage:
+      dev: local
+      test: qa
+      prod: aws
+    local:
+      ACCESS_TOKEN_SECRET: v+ibnN{)TnXoQi%
+      REFRESH_TOKEN_SECRET: c^Eu>{{|HT^rj2%
+      DB_DRIVER: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: dev
+      DB_USERNAME: dev
+      DB_PASSWORD: dev
+      LOG_LEVEL: silly
+
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: ${opt:stage, 'local'}
+  stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
   lambdaHashingVersion: 20201221
   apiGateway:
     minimumCompressionSize: 500
+  environment:
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    ACCESS_TOKEN_SECRET: ${self:custom.environments.${self:custom.environments.env}.ACCESS_TOKEN_SECRET}
+    REFRESH_TOKEN_SECRET: ${self:custom.environments.${self:custom.environments.env}.REFRESH_TOKEN_SECRET}
+    DB_DRIVER: ${self:custom.environments.${self:custom.environments.env}.DB_DRIVER}
+    DB_HOST: ${self:custom.environments.${self:custom.environments.env}.DB_HOST}
+    DB_PORT: ${self:custom.environments.${self:custom.environments.env}.DB_PORT}
+    DB_DATABASE: ${self:custom.environments.${self:custom.environments.env}.DB_DATABASE}
+    DB_USERNAME: ${self:custom.environments.${self:custom.environments.env}.DB_USERNAME}
+    DB_PASSWORD: ${self:custom.environments.${self:custom.environments.env}.DB_PASSWORD}
+    LOG_LEVEL: ${self:custom.environments.${self:custom.environments.env}.LOG_LEVEL}
 
 functions:
   sls-checkout:

@@ -1,18 +1,21 @@
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
-import compression from 'compression'
+import cookieParser from 'cookie-parser'
 
-import routes from '@web/routes'
+import routes from '@src/infrastructure/web/routes'
+import logging from '@src/infrastructure/web/middlewares/logging'
 
 const app = express()
 
-app.use(cors())
+app.use(cors({ credentials: true }))
 app.use(helmet())
-app.use(compression())
+app.use(cookieParser())
 
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.use(logging)
 app.use(routes)
 
 export default app
