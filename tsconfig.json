@@ -13,9 +13,7 @@
     "sourceRoot": "/",
     "baseUrl": "./",
     "paths": {
-      // roots
       "@src/*": ["src/*"],
-      // tests
       "@tests/*": ["tests/*"]
     }
   },
