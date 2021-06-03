@@ -1,8 +1,5 @@
-import { Knex } from 'knex'
-
 export type Context = {
   requestId: string
-  knex: Knex
   user?: unknown
 }
 

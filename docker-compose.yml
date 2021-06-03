@@ -6,10 +6,6 @@ services:
     volumes:
       - .:/var/www/app
     ports:
-      - 3000:3000
-      - 9229:9229
+      - 4000:8080
     command: >
-      bash -c "
-        yarn start
-        && chmod -R 777 .webpack node_modules
-      "
+      bash -c "yarn start"

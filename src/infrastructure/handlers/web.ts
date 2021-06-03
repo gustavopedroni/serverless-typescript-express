@@ -13,7 +13,7 @@ import createContext from '@src/infrastructure/web/context'
 import settings from '@src/infrastructure/config/settings'
 
 const serverlessHandler = serverless(app, {
-  request(request) {
+  request(request: Record<string, unknown>) {
     request.context = createContext()
   },
 })
