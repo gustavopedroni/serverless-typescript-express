@@ -25,7 +25,7 @@ export function createRefreshToken(user: User): string {
     },
     settings.refreshTokenSecret,
     {
-      expiresIn: '7d',
+      expiresIn: '15d',
     },
   )
 }
@@ -33,5 +33,6 @@ export function createRefreshToken(user: User): string {
 export function sendRefreshToken(res: Response, token: string): void {
   res.cookie(REFRESH_TOKEN_COOKIE, token, {
     httpOnly: true,
+    maxAge: 60 * 60 * 24 * 15,
   })
 }

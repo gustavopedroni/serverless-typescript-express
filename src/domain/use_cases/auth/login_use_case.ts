@@ -19,12 +19,12 @@ const LoginUseCase: IUseCase = async ({ body, res }) => {
   }
   // const user = await User.findOne({ where: { email } })
   if (!user) {
-    throw new ResponseError(400, 'could not find user')
+    throw new ResponseError(401, 'Usuário ou senha inválidos')
   }
   const valid = user.password === password
   // const valid = await compare(password, user.password)
   if (!valid) {
-    throw new ResponseError(400, 'bad password')
+    throw new ResponseError(401, 'Usuário ou senha inválidos')
   }
 
   // login successful

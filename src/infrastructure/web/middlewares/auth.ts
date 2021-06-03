@@ -2,26 +2,38 @@ import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 
 import settings from '@src/infrastructure/config/settings'
-import logger from '@src/infrastructure/utils/logger'
 import IUseCase from '@src/domain/use_cases'
 import { handleError, ResponseError } from '@src/infrastructure/web/errors'
+import logger from '@src/infrastructure/utils/logger'
 
-export function isAuth(req: Request, _: Response, next: NextFunction): void {
+export function isAuth(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): unknown {
+  // TODO MELHORAR ESSE MIDDLEWARE
   const { authorization } = req.headers
 
-  if (!authorization) {
-    throw new Error('not authenticated')
-  }
-
   try {
+    if (!authorization) {
+      throw new ResponseError(401, 'Não autorizado')
+    }
+
     const token = authorization.split(' ')[1]
     const payload = verify(token, settings.accessTokenSecret)
     req.context.user = payload
   } catch (err) {
-    logger.error(err)
-    throw new ResponseError(400, 'not authenticated')
-  }
+    console.log(err)
 
+    if (err instanceof ResponseError) {
+      handleError({ err, res })
+    } else {
+      return res.status(401).json({
+        status: 'Unauthorized',
+        message: 'Não autorizado',
+      })
+    }
+  }
   return next()
 }
 

@@ -8,7 +8,12 @@ import logging from '@src/infrastructure/web/middlewares/logging'
 
 const app = express()
 
-app.use(cors({ credentials: true }))
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  }),
+)
 app.use(helmet())
 app.use(cookieParser())
 
