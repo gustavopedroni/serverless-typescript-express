@@ -1,5 +1,8 @@
+import { PrismaClient } from '.prisma/client'
+
 export type Context = {
   requestId: string
+  database: PrismaClient
   user?: unknown
 }
 

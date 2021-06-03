@@ -7,9 +7,14 @@
     "start": "sls offline --host 0.0.0.0 --httpPort 4000 --corsAllowOrigin localhost -s dev",
     "test": "NODE_ENV=test jest --ci --verbose",
     "lint": "eslint src/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma": "prisma"
+  },
+  "prisma": {
+    "schema": "./src/infrastructure/database/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^2.24.0",
     "aws-lambda": "^1.0.6",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
@@ -54,6 +59,7 @@
     "jest": "^27.0.1",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0",
+    "prisma": "^2.24.0",
     "serverless-offline": "^7.0.0",
     "serverless-webpack": "^5.5.0",
     "ts-loader": "^9.2.2",

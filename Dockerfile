@@ -1,4 +1,4 @@
-from node:lts-fermium
+from bitnami/node:14
 
 WORKDIR /var/www/app
 
@@ -7,4 +7,3 @@ COPY yarn.lock .
 
 RUN yarn install
 RUN mkdir .webpack
-RUN chmod -R 777 .webpack node_modules

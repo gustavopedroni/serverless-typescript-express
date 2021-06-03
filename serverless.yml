@@ -14,17 +14,10 @@ custom:
     env: ${self:custom.environments.env_by_stage.${self:provider.stage}}
     env_by_stage:
       dev: local
-      test: qa
-      prod: aws
     local:
       ACCESS_TOKEN_SECRET: v+ibnN{)TnXoQi%
       REFRESH_TOKEN_SECRET: c^Eu>{{|HT^rj2%
-      DB_DRIVER: pg
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_DATABASE: dev
-      DB_USERNAME: dev
-      DB_PASSWORD: dev
+      DATABASE_URL: postgresql://dev:dev@0.0.0.0:5432/dev?schema=public&connection_limit=1&connection_limit=40&pgbouncer=true
       LOG_LEVEL: silly
 
 provider:
@@ -40,13 +33,8 @@ provider:
     STAGE: ${self:provider.stage}
     ACCESS_TOKEN_SECRET: ${self:custom.environments.${self:custom.environments.env}.ACCESS_TOKEN_SECRET}
     REFRESH_TOKEN_SECRET: ${self:custom.environments.${self:custom.environments.env}.REFRESH_TOKEN_SECRET}
-    DB_DRIVER: ${self:custom.environments.${self:custom.environments.env}.DB_DRIVER}
-    DB_HOST: ${self:custom.environments.${self:custom.environments.env}.DB_HOST}
-    DB_PORT: ${self:custom.environments.${self:custom.environments.env}.DB_PORT}
-    DB_DATABASE: ${self:custom.environments.${self:custom.environments.env}.DB_DATABASE}
-    DB_USERNAME: ${self:custom.environments.${self:custom.environments.env}.DB_USERNAME}
-    DB_PASSWORD: ${self:custom.environments.${self:custom.environments.env}.DB_PASSWORD}
-    LOG_LEVEL: ${self:custom.environments.${self:custom.environments.env}.LOG_LEVEL}
+    DATABASE_URL: ${self:custom.environments.${self:custom.environments.env}.DATABASE_URL}.DATABASE_URL}
+
 
 functions:
   sls-checkout:

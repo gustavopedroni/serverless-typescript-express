@@ -6,6 +6,19 @@ services:
     volumes:
       - .:/var/www/app
     ports:
-      - 4000:8080
+      - 4000:4000
     command: >
       bash -c "yarn start"
+  postgres:
+    image: bitnami/postgresql:13
+    environment:
+      POSTGRESQL_USERNAME: dev
+      POSTGRESQL_DATABASE: dev
+      POSTGRESQL_PASSWORD: dev
+    volumes:
+       - postgres:/bitnami/postgresql
+    ports:
+      - 5432:5432
+    
+volumes:
+  postgres:
