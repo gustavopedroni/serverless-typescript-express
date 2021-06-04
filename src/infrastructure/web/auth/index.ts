@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import authMiddleware from '@src/infrastructure/web/middlewares/auth'
 import { LoginUseCase, RefreshTokenUseCase } from '@src/domain/use_cases/auth'
+import authMiddleware from '@src/infrastructure/web/middlewares/auth'
 
 const router = Router()
 

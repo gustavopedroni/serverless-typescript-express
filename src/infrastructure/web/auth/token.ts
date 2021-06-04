@@ -1,9 +1,9 @@
 import { Response } from 'express'
 import { sign } from 'jsonwebtoken'
 
+import User from '@src/domain/entities/user'
 import settings from '@src/infrastructure/config/settings'
 import { REFRESH_TOKEN_COOKIE } from '@src/infrastructure/config/token'
-import User from '@src/domain/entities/user'
 
 export function createAccessToken(user: User): string {
   return sign(

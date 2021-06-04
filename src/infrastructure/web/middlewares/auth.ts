@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 
-import settings from '@src/infrastructure/config/settings'
 import IUseCase from '@src/domain/use_cases'
-import { handleError, ResponseError } from '@src/infrastructure/web/errors'
+import settings from '@src/infrastructure/config/settings'
 import logger from '@src/infrastructure/utils/logger'
+import { handleError, ResponseError } from '@src/infrastructure/web/errors'
 
 export function isAuth(
   req: Request,
@@ -23,7 +23,7 @@ export function isAuth(
     const payload = verify(token, settings.accessTokenSecret)
     req.context.user = payload
   } catch (err) {
-    console.log(err)
+    logger.error(err)
 
     if (err instanceof ResponseError) {
       handleError({ err, res })

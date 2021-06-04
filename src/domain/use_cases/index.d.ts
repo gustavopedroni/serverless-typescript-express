@@ -1,5 +1,6 @@
-import { Context } from '@src/infrastructure/web/context.d'
 import { Request, Response } from 'express'
+
+import { Context } from '@src/infrastructure/web/context.d'
 
 export type UseCaseParams = {
   params: Record<string, unknown>

@@ -2,15 +2,14 @@ import { verify } from 'jsonwebtoken'
 
 import IUseCase from '@src/domain/use_cases'
 import settings from '@src/infrastructure/config/settings'
-import logger from '@src/infrastructure/utils/logger'
-
 import { REFRESH_TOKEN_COOKIE } from '@src/infrastructure/config/token'
+import { getUsers } from '@src/infrastructure/repositories/user_repository'
+import logger from '@src/infrastructure/utils/logger'
 import {
   createAccessToken,
   createRefreshToken,
   sendRefreshToken,
 } from '@src/infrastructure/web/auth/token'
-import { getUsers } from '@src/infrastructure/repositories/user_repository'
 
 type RefreshResponse = {
   ok: boolean

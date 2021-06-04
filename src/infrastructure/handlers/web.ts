@@ -1,16 +1,17 @@
 /* eslint-disable no-param-reassign */
 
+import { gzip } from 'zlib'
+
 import {
   APIGatewayProxyEvent,
   APIGatewayProxyEventHeaders,
   Context as APIContext,
 } from 'aws-lambda'
 import serverless from 'serverless-http'
-import { gzip } from 'zlib'
 
+import settings from '@src/infrastructure/config/settings'
 import app from '@src/infrastructure/web/app'
 import createContext from '@src/infrastructure/web/context'
-import settings from '@src/infrastructure/config/settings'
 
 const serverlessHandler = serverless(app, {
   request(request: Record<string, unknown>) {

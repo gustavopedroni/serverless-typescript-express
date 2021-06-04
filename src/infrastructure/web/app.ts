@@ -1,10 +1,10 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import express from 'express'
+import helmet from 'helmet'
 
-import routes from '@src/infrastructure/web/routes'
 import logging from '@src/infrastructure/web/middlewares/logging'
+import routes from '@src/infrastructure/web/routes'
 
 const app = express()
 

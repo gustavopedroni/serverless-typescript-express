@@ -1,8 +1,8 @@
-import { getReasonPhrase } from 'http-status-codes'
 import { Response } from 'express'
+import { getReasonPhrase } from 'http-status-codes'
 
-import logger from '@src/infrastructure/utils/logger'
 import settings from '@src/infrastructure/config/settings'
+import logger from '@src/infrastructure/utils/logger'
 
 class ResponseError extends Error {
   statusCode: number

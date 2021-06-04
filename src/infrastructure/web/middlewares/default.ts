@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
-import { handleError } from '@src/infrastructure/web/errors'
 import IUseCase from '@src/domain/use_cases'
+import { handleError } from '@src/infrastructure/web/errors'
 
 export default function defaultMiddleware<T extends IUseCase>(useCase: T) {
   return async (req: Request, res: Response): Promise<Response> => {

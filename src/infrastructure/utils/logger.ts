@@ -1,5 +1,6 @@
-import _ from 'lodash'
 import { inspect } from 'util'
+
+import _ from 'lodash'
 import { createLogger, format, transports } from 'winston'
 
 import settings from '@src/infrastructure/config/settings'

@@ -1,5 +1,5 @@
-import { getUsers } from '@src/infrastructure/repositories/user_repository'
 import IUseCase from '@src/domain/use_cases'
+import { getUsers } from '@src/infrastructure/repositories/user_repository'
 import {
   createAccessToken,
   createRefreshToken,

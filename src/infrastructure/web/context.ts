@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid'
 import { PrismaClient } from '@prisma/client'
+import { v4 as uuid } from 'uuid'
 
 import { Context } from '@src/infrastructure/web/context.d'
 
